@@ -3,12 +3,12 @@ import dayjs from 'dayjs';
 type DateType = dayjs.Dayjs | undefined | null | string | number| Date
 
 
-export type DateRange = {
+export type DateRangeType = {
   startDate: DateType
   endDate: DateType
 }
 
-export type TripData = {
+export type TripDataType = {
     title: string;
     startDate: string;
     endDate: string;
@@ -22,9 +22,21 @@ export type TripData = {
     daysUntilEnd:number
   }
 
-export type MyTrips = {
+export type TripsType = {
     key: string;
-    value: TripData;
+    value: TripDataType;
   }
 
- 
+export type TodoDataType= {
+    date:string
+    todo: any
+    tripKey:string
+    icon:number
+    iconName:string
+    iconColor:string
+};
+
+export type TodosType={
+  key:string
+  value:TodoDataType
+}

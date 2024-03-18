@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { MyTrips, TripData } from "./Types";
+import { TodosType, TripsType } from "./Types";
 
 
 type MyThemeType={
@@ -8,11 +8,13 @@ type MyThemeType={
 }
 
 type MyTripsType={
-    trips:MyTrips[]|undefined;
-    setTrips:(newTrips: MyTrips[]|undefined)=>void;
-    activeTrips:MyTrips[]|undefined;
-    pastTrips:MyTrips[]|undefined
-    
+    trips:TripsType[]|undefined;
+    setTrips:(newTrips: TripsType[]|undefined)=>void;
+    activeTrips:TripsType[]|undefined;
+    pastTrips:TripsType[]|undefined
+    todoList:TodosType[]|undefined
+    setTodoList:(newTodo: TodosType[]|undefined)=>void;
+    sortedTodos:TodosType[]|undefined
 }
 
 export const MyTheme = createContext<MyThemeType>({
@@ -27,6 +29,10 @@ export const TripContext = createContext<MyTripsType>({
     trips: [],
     setTrips:()=>{},
     activeTrips:[],
-    pastTrips:[]
+    pastTrips:[],
+    todoList:[],
+    setTodoList:()=>{},
+    sortedTodos:[]
+
 
 })

@@ -3,7 +3,7 @@ import { useCallback, useContext, useEffect, useState } from 'react';
 import { useTheme } from '@react-navigation/native';
 import { TripProps } from '../../utils/NavigationType';
 import { FontAwesome6 } from '@expo/vector-icons';
-import { getAllTrips, removeTrip } from '../../utils/Storage';
+import { getAllTrips, removeItem } from '../../utils/Storage';
 import { Feather } from '@expo/vector-icons';
 import { TripContext } from '../../utils/Context';
 
@@ -20,14 +20,13 @@ export default function Trips({navigation,route}:TripProps) {
           getAllTrips().then((data) => setTrips(data))
           navigation.setParams({newTripAdded:false})
       }
-
   }, [newTripAdded])
 
 
 
 
   const handleRemove =(key:string)=>{
-    removeTrip(key)
+    removeItem(key)
     getAllTrips().then((data) => setTrips(data))
   }
 

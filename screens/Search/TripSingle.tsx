@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Dimensions, Pressable, StyleSheet, Text, View } from 'react-native'
-import { TripData } from '../../utils/Types'
+import { Alert, Pressable, StyleSheet, Text, View } from 'react-native'
+import { TripDataType } from '../../utils/Types'
 import { TripSingleProps } from '../../utils/NavigationType';
 import { TripStartsEnds} from '../../utils/TripStartsEnds';
 import { useTheme } from '@react-navigation/native';
 import { Feather } from '@expo/vector-icons';
-import { MaterialIcons } from '@expo/vector-icons';
 import { FontAwesome6 } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
@@ -14,13 +13,14 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 export default function TripSingle({route,navigation}:TripSingleProps) {
   const {colors} = useTheme()
   const {key}=route.params
-  const [myTrip,setMyTrip]=useState<TripData>()
+  const [myTrip,setMyTrip]=useState<TripDataType>()
   const getMyTrip = async () => {
       try {
         const jsonValue = await AsyncStorage.getItem(key)
         jsonValue != null ? setMyTrip(JSON.parse(jsonValue)) : null
       } catch(e) {
-          console.log('Error getting trip',e)
+          Alert.alert('Error getting trip')
+          console.error(e)
       }
     }
 
@@ -36,8 +36,8 @@ export default function TripSingle({route,navigation}:TripSingleProps) {
     <View style={styles.container}>
       <View style={styles.content}>
       <Text style={styles.title}>{myTrip!=undefined && TripStartsEnds(myTrip)}</Text>
-      <Text style={styles.title}>{myTrip?.title}</Text>
-      <Text style={styles.title}>{myTrip?.duration} days</Text>
+      <Text style={{ textTransform:'uppercase',fontSize:17,fontWeight:'500'}}>{myTrip?.title}</Text>
+      <Text style={{textTransform:'uppercase',fontSize:17,fontWeight:'500'}}>{myTrip?.duration} days</Text>
         <View style={{flexDirection:'row',gap:20,alignItems:'center'}}>
           <Text style={{color:colors.text,fontSize:16}}>{myTrip?.startDate}</Text>
           <Feather name="arrow-right" size={16} color={colors.text} />
@@ -73,8 +73,8 @@ const styles=StyleSheet.create({
   padding:20,
   gap:20,
   borderWidth:2,
-  borderColor:'#ccc',
-  borderRadius:20
+  borderColor:'gainsboro',
+  borderRadius:15
  },
  title:{
   textTransform:'uppercase',
@@ -94,8 +94,8 @@ const styles=StyleSheet.create({
   width:"45%",
   padding:20,
   borderWidth:2,
-  borderColor:'#ccc',
-  borderRadius:20,
+  borderColor:'gainsboro',
+  borderRadius:15,
   alignItems:'center'
  }
 

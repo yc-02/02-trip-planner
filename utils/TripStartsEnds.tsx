@@ -1,6 +1,6 @@
-import { TripData } from "./Types"
+import { TripDataType } from "./Types"
 
-export const TripStartsEnds = (trip:TripData)=>{
+export const TripStartsEnds = (trip:TripDataType)=>{
     if(trip.hoursUntilTrip < 0 && trip.hoursUntilEnd > 24 && trip.hoursUntilTrip < -24 && trip.hoursUntilEnd > 48){
       return 'Your Trip started.'
     }else if(trip.hoursUntilTrip <= 0 && trip.hoursUntilTrip > -24 ){

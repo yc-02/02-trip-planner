@@ -1,10 +1,19 @@
-import React from 'react'
-import { View, Text } from 'react-native'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, { useEffect } from 'react'
+import { View, Text, Alert, Button } from 'react-native'
+import { TodosType } from '../utils/Types';
+import dayjs from 'dayjs';
+
+
 
 export default function AccountNavScreen() {
+
   return (
-    <View>
-        <Text> account nav screen</Text>
+    <View style={{padding:20}}>
+    <View style={[{backgroundColor:'pink',padding:20}]}>
+        <Text>account nav screen</Text>
+    </View>
+
     </View>
   )
 }

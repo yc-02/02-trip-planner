@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Feather } from '@expo/vector-icons';
 import DateTimePicker from 'react-native-ui-datepicker';
 import dayjs from 'dayjs';
-import { DateRange, TripData } from "../../utils/Types";
+import { DateRangeType } from "../../utils/Types";
 import { RootProps } from "../../utils/NavigationType";
 import { FontAwesome6 } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
@@ -19,7 +19,7 @@ export default function AddScreen({navigation}:RootProps) {
   const {colors} = useTheme()
 
 
-  const [date,setDate]=useState<DateRange>()
+  const [date,setDate]=useState<DateRangeType>({startDate: dayjs() , endDate: dayjs()})
   const [showCalendar,setShowCalendar]=useState<boolean>(false)
   const [title,setTitle] = useState<string>()
 
@@ -49,13 +49,11 @@ let days:string[] =[]
 const start = dayjs(date?.startDate)
 const end=dayjs(date?.endDate)
 if(date && date?.endDate && date.startDate){
-  for (let i=start; i<end; i=i.add(1,'day')){
+  for (let i=start; i<=end; i=i.add(1,'day')){
     days.push(i.format('ddd, MMM D'))
   }
 }
-if(dayjs().isSame(start,'day') && start.isSame(end,'day')){
-  days.push(start.format('ddd, MMM D'))
-}
+
 
 
   const onSubmit = ()=>{
@@ -73,7 +71,7 @@ if(dayjs().isSame(start,'day') && start.isSame(end,'day')){
         hoursUntilEnd:hoursUntilEnd,
         daysUntilEnd:daysUntilEnd
       }
-      const key = `${title},${formatStartDate}`
+      const key = `Trip:${title},${formatStartDate}`
       storeData(key,newData)
       setTitle(undefined)
       navigation.navigate('Search',{screen:'Trips',params:{newTripAdded:true}

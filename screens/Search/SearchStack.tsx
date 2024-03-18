@@ -21,12 +21,12 @@ export default function SearchStack() {
     initialRouteName='Trips'
     
     >
-    <Stack.Screen name='Trips' component={Trips} initialParams={{newTripAdded:false}}/>
+    <Stack.Screen name='Trips' component={Trips} initialParams={{newTripAdded:false}} options={{title:"TRIPS"}}/>
     <Stack.Screen name='TripSingle' 
     component={TripSingle} 
-    options={({route})=>({title:decodeURIComponent(route.params.title)})}
+    options={({route})=>({title:decodeURIComponent(route.params.title.toUpperCase())})}
     />
-    <Stack.Screen name='Itinerary' component={Itinerary} options={{presentation:'modal'}}/>
+    <Stack.Screen name='Itinerary' component={Itinerary} options={{title:'ITINERARY'}}/>
   </Stack.Navigator>
   )
 }

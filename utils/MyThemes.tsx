@@ -14,8 +14,8 @@ export const MyDarkTheme = {
     dark:false,
     colors:{
       primary:'seagreen',
-      background:'whitesmoke',
-      card:'white',
+      background:'white',
+      card:'whitesmoke',
       text:"#303030",
       border:'#A9A9A9',
       notification: 'tomato',
