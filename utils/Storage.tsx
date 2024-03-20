@@ -79,9 +79,6 @@ export const parentDeletedTodos = async()=>{
     const parentDeleted =myTodos.filter(a=>!tripKeys.includes(a.value.tripKey))
     const parentDeletedKeys = parentDeleted.map(key=>key.key)
     await AsyncStorage.multiRemove(parentDeletedKeys)
-    console.log('all todo',myTodos)
-    console.log('trip keys',tripKeys)
-    console.log('parentdeletedtodos',parentDeleted)
   }catch(e){
     console.error(e)
   }

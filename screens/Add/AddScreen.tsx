@@ -81,7 +81,7 @@ if(date && date?.endDate && date.startDate){
 
   return (
     <View style={styles.container}>
-        <View style={styles.inputContainer}>
+        <View style={[styles.inputContainer,{borderColor:colors.border}]}>
         <View style={{paddingLeft:20}}>
         <FontAwesome6 name="magnifying-glass-location" size={24} color={colors.text} />
         </View>
@@ -95,14 +95,14 @@ if(date && date?.endDate && date.startDate){
         />
         </View>
       <Pressable onPress={()=>setShowCalendar(!showCalendar)}>
-        <View style={styles.datePicker}>
+        <View style={[styles.datePicker,{borderColor:colors.border}]}>
           <Feather name="calendar" size={25} color={colors.text} />
          <Text style={{color:colors.text,fontSize:18}}>{formatStartDate}</Text>
          <AntDesign name="arrowright" size={20} color={colors.text} />
          <Text style={{color:colors.text,fontSize:18}}>{formatEndDate}</Text>
         </View>
       </Pressable>
-      <Pressable style={({pressed})=>[styles.button,{backgroundColor:pressed?'darkseagreen':colors.primary}]} onPress={onSubmit}>
+      <Pressable style={({pressed})=>[styles.button,{backgroundColor:pressed?colors.text:colors.primary}]} onPress={onSubmit}>
         <View style={{flexDirection:'row',gap:10,alignItems:"center"}}>
         <FontAwesome6 name="person-walking-luggage" size={24} color='white' />
         <Text style={{color:'white',fontWeight:'bold'}}>Add Trip</Text>
@@ -120,8 +120,8 @@ if(date && date?.endDate && date.startDate){
         startDate={date?.startDate}
         endDate={date?.endDate}
         onChange={(dates)=>setDate(dates)}
-        headerButtonColor='#2e8b57'
-        selectedItemColor='#2e8b57'
+        headerButtonColor={colors.primary}
+        selectedItemColor={colors.primary}
         headerTextStyle={{color:colors.text,fontSize:18}}
         headerButtonSize={18}
         calendarTextStyle={{color:colors.text}}
@@ -146,7 +146,6 @@ const styles=StyleSheet.create({
     flexDirection:'row',
     borderWidth:2,
     borderRadius:10,
-    borderColor:'#ccc',
     alignItems:'center'
   },
   input:{
@@ -169,7 +168,6 @@ const styles=StyleSheet.create({
     padding:20,
     borderWidth:2,
     borderRadius:10,
-    borderColor:'#ccc',
     flexDirection:'row',
     alignItems:'center',
     gap:20,

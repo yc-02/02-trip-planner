@@ -47,15 +47,15 @@ export const PressableActivityIcons = ({name,iconName,icon,handlePressIcon,iconC
 
 
 export const Transportation = [
-    {name:'Departure', iconName:'flight-takeoff', icon:0, iconColor:'#2f4f4f'},
-    {name:'Arrival', iconName:'flight-land', icon:0, iconColor:'#2f4f4f'},
-    {name:'Car Rental', iconName:'car-rental', icon:0, iconColor:'#2f4f4f'},
-    {name:'Driving', iconName:'directions-car', icon:0, iconColor:'#2f4f4f'},
-    {name:'Lodging', iconName:'local-hotel', icon:0, iconColor:'#2f4f4f'},
-    {name:'Camping', iconName:'campground', icon:1, iconColor:'#2f4f4f'},
-    {name:'Parking', iconName:'local-parking', icon:0, iconColor:'#2f4f4f'},
-    {name:'Train', iconName:'directions-train', icon:0, iconColor:'#2f4f4f'},
-    {name:'Ferry', iconName:'directions-ferry', icon:0, iconColor:'#2f4f4f'},
+    {name:'Departure', iconName:'flight-takeoff', icon:0, iconColor:'darkslategrey'},
+    {name:'Arrival', iconName:'flight-land', icon:0, iconColor:'darkslategrey'},
+    {name:'Car Rental', iconName:'car-rental', icon:0, iconColor:'darkslategrey'},
+    {name:'Driving', iconName:'directions-car', icon:0, iconColor:'darkslategrey'},
+    {name:'Lodging', iconName:'local-hotel', icon:0, iconColor:'darkslategrey'},
+    {name:'Camping', iconName:'campground', icon:1, iconColor:'darkslategrey'},
+    {name:'Parking', iconName:'local-parking', icon:0, iconColor:'darkslategrey'},
+    {name:'Train', iconName:'directions-train', icon:0, iconColor:'darkslategrey'},
+    {name:'Ferry', iconName:'directions-ferry', icon:0, iconColor:'darkslategrey'},
 ]
 export const Indoor =[
     { name: 'Attraction', iconName: 'local-see', icon: 0 ,iconColor:'#b8860b'},
@@ -91,14 +91,14 @@ export const Outdoor=[
     { name: 'Wildlife', iconName: 'goat', icon: 0, iconColor:'darkolivegreen' }
 ]
 export const Water=[
-    { name: 'Beach', iconName: 'beach', icon: 2, iconColor:'darkturquoise' },
-    { name: 'Kayaking', iconName: 'kayaking', icon: 0, iconColor:'darkturquoise' },
-    { name: 'Sailing', iconName: 'sailing', icon: 0, iconColor:'darkturquoise' },
-    { name: 'Scuba Diving', iconName: 'scuba-diving', icon: 0, iconColor:'darkturquoise' },
-    { name: 'Snorkeling', iconName: 'diving-snorkel', icon: 2, iconColor:'darkturquoise' },
-    { name: 'Surfing', iconName: 'surfing', icon: 0, iconColor:'darkturquoise' },
-    { name: 'Swimming', iconName: 'person-swimming', icon: 1, iconColor:'darkturquoise' },
-    { name: 'Water Skiing', iconName: 'ski-water', icon: 2, iconColor:'darkturquoise' }
+    { name: 'Beach', iconName: 'beach', icon: 2, iconColor:'lightseagreen' },
+    { name: 'Kayaking', iconName: 'kayaking', icon: 0, iconColor:'lightseagreen' },
+    { name: 'Sailing', iconName: 'sailing', icon: 0, iconColor:'lightseagreen' },
+    { name: 'Scuba Diving', iconName: 'scuba-diving', icon: 0, iconColor:'lightseagreen' },
+    { name: 'Snorkeling', iconName: 'diving-snorkel', icon: 2, iconColor:'lightseagreen' },
+    { name: 'Surfing', iconName: 'surfing', icon: 0, iconColor:'lightseagreen' },
+    { name: 'Swimming', iconName: 'person-swimming', icon: 1, iconColor:'lightseagreen' },
+    { name: 'Water Skiing', iconName: 'ski-water', icon: 2, iconColor:'lightseagreen' }
 ]
 export const Winter=[
 

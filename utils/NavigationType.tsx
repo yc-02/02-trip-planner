@@ -20,8 +20,10 @@ export type SearchStackParamList ={
     Trips:{newTripAdded:boolean}
     TripSingle:{key:string,title:string}
     Itinerary:{myTrip:TripDataType|undefined,key:string}
+    ItineraryDetails:{title:string, tripKey:string}
   }
 
 export type TripSingleProps = NativeStackScreenProps<SearchStackParamList,'TripSingle','Trips'>
 export type TripProps = NativeStackScreenProps<SearchStackParamList,'Trips'>
 export type ItineraryProps = NativeStackScreenProps<SearchStackParamList,'Itinerary'>
+export type ItineraryDetailsProps = NativeStackScreenProps<SearchStackParamList,'ItineraryDetails'>

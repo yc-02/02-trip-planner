@@ -1,32 +1,30 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, TextInput, View, ScrollView,FlatList, Pressable, Button, Easing } from 'react-native';
 import { storeTodo } from '../utils/Storage';
 import { TodoDataType } from '../utils/Types';
 import { Food, Indoor, Others, Outdoor, PressableActivityIcons, Transportation, Water, Winter, renderIconType,} from '../utils/ActivityIcons';
 import { AntDesign } from '@expo/vector-icons';
 import { useTheme } from '@react-navigation/native';
-import { FontAwesome } from '@expo/vector-icons';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 export default function TodoModal({
     date,tripKey,
     setTodoUpdate,
-    handleAnimated,
     setModalVisible,
-    modalVisible,
-
+    handleScroll
+    
     }:{
     date:string,
     tripKey:string,
     setTodoUpdate: React.Dispatch<React.SetStateAction<boolean>>,
     setModalVisible:React.Dispatch<React.SetStateAction<boolean>>,
-    handleAnimated:(key: string) => void,
-    modalVisible:boolean
+    handleScroll:()=>void
 
 }) {
 
     const [todo,setTodo]=useState('')
     const {colors}=useTheme()
-    //add new todo  3/15 add color to todos
+    //add new todo 
     const handleAdd = (icon:number,iconName:string,iconColor:string) => {
         const id = Date.now().toString();
         const todoKey = `Todo:${id}`
@@ -41,9 +39,7 @@ export default function TodoModal({
             storeTodo(todoKey,newTodo)
             setTodoUpdate(true)
             setModalVisible(false)
-            handleAnimated(todoKey)
-
-
+            handleScroll()
     }
     //display input and icon
     const [showInput,setShowInput]=useState(false)
@@ -75,24 +71,11 @@ export default function TodoModal({
     }
 
 
-    // const flatListRef = useRef<FlatList>(null);
-
-    // useEffect(()=>{
-    //   setTimeout(()=>{
-    //     flatListRef.current?.scrollToOffset({ offset: 350, animated: true })
-    //   },1000)
-    //   setTimeout(()=>{
-    //     flatListRef.current?.scrollToOffset({ offset: 0, animated: true })
-    //   },1800)
-    // },[modalVisible]) 
-
-
-
 
   return (
     <View style={styles.container}>
         <Pressable style={{alignSelf:'flex-end'}} onPress={()=>setModalVisible(false)}>
-        <AntDesign name="close" size={27} color="black" />
+        <AntDesign name="close" size={27} color={Colors.text}/>
         </Pressable>
         <View style={[{flexDirection:'row',gap:20,justifyContent:'center',alignItems:'center'},]}>
         <Text style={{textTransform:'uppercase',fontWeight:'bold',fontSize:18,color:colors.text}}>activities</Text>
@@ -104,7 +87,7 @@ export default function TodoModal({
             icon={selectIcon.icon} handlePressIcon={()=>{setShowInput(false)}} 
             iconColor={selectIcon.iconColor}/>
             <TextInput
-                style={styles.input}
+                style={[styles.input,{borderColor:colors.border}]}
                 placeholder='Enter your plans'
                 value={todo}
                 onChangeText={(e:string)=>setTodo(e)}
@@ -112,7 +95,7 @@ export default function TodoModal({
                 />
         </View>
         </View>
-        <ScrollView style={[styles.iconContainer]}>
+        <ScrollView>
             <View>
             <FlatList
             data={Transportation}
@@ -177,9 +160,6 @@ const styles= StyleSheet.create({
         padding:20,
         gap:20
     },
-    iconContainer:{
-  
-    },
     iconItem:{
         width:95,
         height:80,
@@ -193,7 +173,6 @@ const styles= StyleSheet.create({
     input:{
         borderBottomWidth:1,
         fontSize:18,
-        borderColor:'gainsboro',
         width:'80%',
         padding:10,
     }

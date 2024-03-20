@@ -22,7 +22,7 @@ export default function HomeScreen({navigation}:RootProps) {
             <FontAwesome6 name="person-walking-luggage" size={24} color={colors.text} />
             <Text style={[styles.upcomingText,{color:colors.text}]}>Where to next ?</Text>
           </View>
-          <Pressable style={styles.button} onPress={()=>navigation.navigate('Add')}>
+          <Pressable style={[styles.button,{backgroundColor:colors.primary}]} onPress={()=>navigation.navigate('Add')}>
             <Text style={{color:'white',fontSize:18,fontWeight:'bold'}}>Add Your Trip</Text>
           </Pressable>
         </View>):
@@ -61,18 +61,17 @@ const styles = StyleSheet.create({
 
     },
     button:{
-        padding:10,
-        backgroundColor:'#2e8b57',
-        borderRadius:10,
-        alignItems:'center'
+      padding:10,
+      borderRadius:10,
+      alignItems:'center'
     },
     upcomingContainer:{
       gap:10,
 
     },
     upcomingText:{
-    textTransform:'uppercase',
-    fontSize:18,
-    fontWeight:'bold'
+      textTransform:'uppercase',
+      fontSize:18,
+      fontWeight:'bold'
     }
 })

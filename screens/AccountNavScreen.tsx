@@ -10,7 +10,7 @@ export default function AccountNavScreen() {
 
   return (
     <View style={{padding:20}}>
-    <View style={[{backgroundColor:'pink',padding:20}]}>
+    <View style={[{padding:20}]}>
         <Text>account nav screen</Text>
     </View>
 

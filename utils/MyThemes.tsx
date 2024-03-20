@@ -1,7 +1,7 @@
 export const MyDarkTheme = {
     dark: true,
     colors: {
-      primary: 'seagreen',
+      primary: '#1c8a79',
       background: '#303030',
       card: 'dimgray',
       text: 'white',
@@ -13,12 +13,13 @@ export const MyDarkTheme = {
   export const MyLightTheme={
     dark:false,
     colors:{
-      primary:'seagreen',
+      primary:'#1c8a79',
       background:'white',
       card:'whitesmoke',
       text:"#303030",
-      border:'#A9A9A9',
-      notification: 'tomato',
-  
+      border:'lightgray',
+      notification: '#f76159',
     }
   }
+
+ 

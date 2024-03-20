@@ -34,9 +34,9 @@ export default function TripSingle({route,navigation}:TripSingleProps) {
 
   return (
     <View style={styles.container}>
-      <View style={styles.content}>
+      <View style={[styles.content,{borderColor:colors.border}]}>
       <Text style={styles.title}>{myTrip!=undefined && TripStartsEnds(myTrip)}</Text>
-      <Text style={{ textTransform:'uppercase',fontSize:17,fontWeight:'500'}}>{myTrip?.title}</Text>
+      <Text style={{ textTransform:'uppercase',fontSize:17,fontWeight:'700'}}>{myTrip?.title}</Text>
       <Text style={{textTransform:'uppercase',fontSize:17,fontWeight:'500'}}>{myTrip?.duration} days</Text>
         <View style={{flexDirection:'row',gap:20,alignItems:'center'}}>
           <Text style={{color:colors.text,fontSize:16}}>{myTrip?.startDate}</Text>
@@ -45,12 +45,12 @@ export default function TripSingle({route,navigation}:TripSingleProps) {
         </View>
       </View>
       <View style={styles.buttonContainer}>
-      <Pressable style={styles.button} onPress={()=>navigation.navigate('Itinerary',{myTrip:myTrip,key:key})}>
-      <MaterialCommunityIcons name="map-check-outline" size={24} color="black" />
+      <Pressable style={[styles.button,{borderColor:colors.border}]} onPress={()=>navigation.navigate('Itinerary',{myTrip:myTrip,key:key})}>
+      <MaterialCommunityIcons name="map-check-outline" size={24} color={colors.text} />
       <Text>Itinerary</Text>
       </Pressable>
-      <Pressable style={styles.button}>
-      <FontAwesome6 name="list-check" size={24} color="black" />
+      <Pressable style={[styles.button,{borderColor:colors.border}]}>
+      <FontAwesome6 name="list-check" size={24} color={colors.text} />
       <Text>Checklist</Text>
       </Pressable>
       </View>
@@ -73,7 +73,6 @@ const styles=StyleSheet.create({
   padding:20,
   gap:20,
   borderWidth:2,
-  borderColor:'gainsboro',
   borderRadius:15
  },
  title:{
@@ -94,7 +93,6 @@ const styles=StyleSheet.create({
   width:"45%",
   padding:20,
   borderWidth:2,
-  borderColor:'gainsboro',
   borderRadius:15,
   alignItems:'center'
  }
