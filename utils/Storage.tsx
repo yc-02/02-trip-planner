@@ -97,3 +97,14 @@ if(keys.length>0 && values.length>0){
   }
 }
 }
+
+export const getSingleTrip = async (key:string) => {
+  try {
+    const jsonValue = await AsyncStorage.getItem(key)
+    const mySingleTrip = jsonValue && JSON.parse(jsonValue)
+    return mySingleTrip
+  } catch(e) {
+      Alert.alert('Error getting trip')
+      console.error(e)
+  }
+}

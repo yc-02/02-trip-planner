@@ -1,11 +1,11 @@
 import { useTheme } from "@react-navigation/native";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { useContext,} from "react";
-import { RootProps} from "../utils/NavigationType";
-import { TripContext } from "../utils/Context";
+import { RootProps} from "../../utils/NavigationType";
+import { TripContext } from "../../utils/Context";
 import { FontAwesome6 } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
-import { TripStartsEnds } from "../utils/TripStartsEnds";
+import { TripStartsEnds } from "../../utils/TripStartsEnds";
 
 
 export default function HomeScreen({navigation}:RootProps) {
@@ -29,9 +29,9 @@ export default function HomeScreen({navigation}:RootProps) {
 
          ( 
           
-         <Pressable onPress={()=>navigation.navigate('Search',{screen:'Trips',params:{newTripAdded:false}})}>
+         <Pressable onPress={()=>navigation.navigate('Search',{screen:'Trips',params:{tripUpdated:false}})}>
          <View style={styles.upcomingContainer}>
-            <Text style={styles.upcomingText}>{TripStartsEnds(activeTrips[0].value)}</Text>
+            <TripStartsEnds trip={activeTrips[0].value}/>
             <View style={{flexDirection:'row',gap:20,alignItems:'center'}}>
               <FontAwesome6 name="person-walking-luggage" size={24} color={colors.text}/>
               <Text style={[styles.upcomingText,{color:colors.text}]}>{activeTrips[0].value.title}</Text>

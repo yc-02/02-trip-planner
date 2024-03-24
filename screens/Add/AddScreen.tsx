@@ -10,6 +10,7 @@ import { RootProps } from "../../utils/NavigationType";
 import { FontAwesome6 } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { storeData } from "../../utils/Storage";
+import { MyColors } from "../../utils/MyThemes";
 
 
 
@@ -17,6 +18,7 @@ import { storeData } from "../../utils/Storage";
 
 export default function AddScreen({navigation}:RootProps) {
   const {colors} = useTheme()
+  const {myColors}=MyColors
 
 
   const [date,setDate]=useState<DateRangeType>({startDate: dayjs() , endDate: dayjs()})
@@ -74,7 +76,7 @@ if(date && date?.endDate && date.startDate){
       const key = `Trip:${title},${formatStartDate}`
       storeData(key,newData)
       setTitle(undefined)
-      navigation.navigate('Search',{screen:'Trips',params:{newTripAdded:true}
+      navigation.navigate('Search',{screen:'Trips',params:{tripUpdated:true}
       })}
 }
 
@@ -102,7 +104,7 @@ if(date && date?.endDate && date.startDate){
          <Text style={{color:colors.text,fontSize:18}}>{formatEndDate}</Text>
         </View>
       </Pressable>
-      <Pressable style={({pressed})=>[styles.button,{backgroundColor:pressed?colors.text:colors.primary}]} onPress={onSubmit}>
+      <Pressable style={({pressed})=>[styles.button,{backgroundColor:pressed?myColors.tertiary:colors.primary}]} onPress={onSubmit}>
         <View style={{flexDirection:'row',gap:10,alignItems:"center"}}>
         <FontAwesome6 name="person-walking-luggage" size={24} color='white' />
         <Text style={{color:'white',fontWeight:'bold'}}>Add Trip</Text>

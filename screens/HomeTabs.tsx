@@ -1,7 +1,7 @@
 import { createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import { useTheme } from '@react-navigation/native';
-import HomeScreen from './HomeScreen';
-import AccountNavScreen from './AccountNavScreen';
+import HomeScreen from './Home/HomeScreen';
+import AccountNavScreen from './Account/AccountNavScreen';
 import { MaterialIcons } from '@expo/vector-icons';
 import { RootTabParamList } from '../utils/NavigationType';
 import SearchStack from './Search/SearchStack';

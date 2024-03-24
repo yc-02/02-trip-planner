@@ -13,13 +13,21 @@ export const MyDarkTheme = {
   export const MyLightTheme={
     dark:false,
     colors:{
-      primary:'#1c8a79',
-      background:'white',
-      card:'whitesmoke',
+      primary:'#0aa6a6',
+      background:'#f0f0f0',
+      card:'#f5f5f5',
       text:"#303030",
-      border:'lightgray',
-      notification: '#f76159',
+      border:'gainsboro',
+      notification:'tomato',
     }
   }
 
- 
+ export const MyColors={
+  myColors:{
+    secondary:'#57aba2',
+    tertiary:'#6dd6cb',
+    icon:'#424242',
+    notification:'#29ccbb'
+  },
+
+ }

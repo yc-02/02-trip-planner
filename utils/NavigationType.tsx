@@ -17,13 +17,18 @@ export type RootProps = BottomTabScreenProps<RootTabParamList>;
 export type AddScreenNavigationProps = BottomTabScreenProps<RootTabParamList,'Add'>
 
 export type SearchStackParamList ={
-    Trips:{newTripAdded:boolean}
-    TripSingle:{key:string,title:string}
+    Trips:{tripUpdated:boolean}
+    TripSingle:{key:string,title:string,singleTrip:TripDataType}
     Itinerary:{myTrip:TripDataType|undefined,key:string}
-    ItineraryDetails:{title:string, tripKey:string}
-  }
+    ItineraryDetails:{todoUpdated:boolean,todoAdded:boolean,title:string, tripKey:string}
+    AddItinerary:{title:string, tripKey:string}
+    ReadyMadeList:undefined
+    CreateList:undefined
 
-export type TripSingleProps = NativeStackScreenProps<SearchStackParamList,'TripSingle','Trips'>
+  }
+export type TripSingleProps = NativeStackScreenProps<SearchStackParamList,'TripSingle'>
 export type TripProps = NativeStackScreenProps<SearchStackParamList,'Trips'>
 export type ItineraryProps = NativeStackScreenProps<SearchStackParamList,'Itinerary'>
 export type ItineraryDetailsProps = NativeStackScreenProps<SearchStackParamList,'ItineraryDetails'>
+export type AddItineraryProps = NativeStackScreenProps<SearchStackParamList,'AddItinerary'>
+export type ReadyMadeListProps = NativeStackScreenProps<SearchStackParamList,'ReadyMadeList'>

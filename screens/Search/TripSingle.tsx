@@ -1,60 +1,76 @@
-import { useState, useEffect } from 'react'
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Alert, Pressable, StyleSheet, Text, View } from 'react-native'
-import { TripDataType } from '../../utils/Types'
+import { useLayoutEffect, useState } from 'react'
+import { Pressable, StyleSheet, Text, View } from 'react-native'
 import { TripSingleProps } from '../../utils/NavigationType';
 import { TripStartsEnds} from '../../utils/TripStartsEnds';
 import { useTheme } from '@react-navigation/native';
-import { Feather } from '@expo/vector-icons';
-import { FontAwesome6 } from '@expo/vector-icons';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { Feather, MaterialCommunityIcons,Ionicons } from '@expo/vector-icons';
+import { removeItem } from '../../utils/Storage';
+import ManageTripModal from '../../components/ManageTripModal';
+
 
 
 export default function TripSingle({route,navigation}:TripSingleProps) {
   const {colors} = useTheme()
-  const {key}=route.params
-  const [myTrip,setMyTrip]=useState<TripDataType>()
-  const getMyTrip = async () => {
-      try {
-        const jsonValue = await AsyncStorage.getItem(key)
-        jsonValue != null ? setMyTrip(JSON.parse(jsonValue)) : null
-      } catch(e) {
-          Alert.alert('Error getting trip')
-          console.error(e)
-      }
-    }
+  const {singleTrip,key}=route.params
+  const [modalVisible,setModalVisible]=useState<boolean>(false)
+
+  
+  useLayoutEffect(()=>{
+    navigation.setOptions({
+      headerRight: () => (
+        <View>
+          <Pressable onPress={()=>setModalVisible(true)}>
+          <Ionicons name="ellipsis-horizontal-sharp" size={24} color={colors.text} />
+          </Pressable>
+        </View>
+      )
+    })
+  },[navigation])
 
 
-  useEffect(()=>{
-      getMyTrip()
-    },[])
-
+  const handleRemove =()=>{
+    removeItem(key)
+    navigation.navigate('Trips',{tripUpdated:true})
+  }
 
 
 
   return (
-    <View style={styles.container}>
-      <View style={[styles.content,{borderColor:colors.border}]}>
-      <Text style={styles.title}>{myTrip!=undefined && TripStartsEnds(myTrip)}</Text>
-      <Text style={{ textTransform:'uppercase',fontSize:17,fontWeight:'700'}}>{myTrip?.title}</Text>
-      <Text style={{textTransform:'uppercase',fontSize:17,fontWeight:'500'}}>{myTrip?.duration} days</Text>
+    <View style={[styles.container]}>
+      <View style={[styles.content,{borderBottomColor:colors.border}]}>
+       <TripStartsEnds trip={singleTrip}/>
+        <Text style={{ textTransform:'capitalize',fontSize:17,fontWeight:'700',color:colors.text}}>{singleTrip.title}</Text>
+        <Text style={{fontSize:17,color:colors.text}}>
+          {singleTrip.duration} {singleTrip.duration===1?'Day':'Days'}
+        </Text>
         <View style={{flexDirection:'row',gap:20,alignItems:'center'}}>
-          <Text style={{color:colors.text,fontSize:16}}>{myTrip?.startDate}</Text>
+          <Text style={{color:colors.text,fontSize:16}}>{singleTrip.startDate}</Text>
           <Feather name="arrow-right" size={16} color={colors.text} />
-          <Text style={{color:colors.text,fontSize:16}}>{myTrip?.endDate}</Text>
+          <Text style={{color:colors.text,fontSize:16}}>{singleTrip.endDate}</Text>
         </View>
       </View>
       <View style={styles.buttonContainer}>
-      <Pressable style={[styles.button,{borderColor:colors.border}]} onPress={()=>navigation.navigate('Itinerary',{myTrip:myTrip,key:key})}>
-      <MaterialCommunityIcons name="map-check-outline" size={24} color={colors.text} />
-      <Text>Itinerary</Text>
-      </Pressable>
-      <Pressable style={[styles.button,{borderColor:colors.border}]}>
-      <FontAwesome6 name="list-check" size={24} color={colors.text} />
-      <Text>Checklist</Text>
-      </Pressable>
-      </View>
-
+        <Pressable style={[styles.button,{borderColor:colors.border}]}
+          onPress={()=>navigation.navigate('Itinerary',{myTrip:singleTrip,key:key})}>
+          <MaterialCommunityIcons name="briefcase-clock-outline" size={24} color={colors.primary} />
+          <Text style={{color:colors.text,fontSize:17,fontWeight:'500'}}>Itinerary</Text>
+        </Pressable>
+        <Pressable style={[styles.button,{borderColor:colors.border}]} 
+          onPress={()=>navigation.navigate('ReadyMadeList')}>
+          <MaterialCommunityIcons name="format-list-checks" size={24} color={colors.primary} />
+          <Text style={{color:colors.text,fontSize:17,fontWeight:'500'}}>Ready-Made Packing List</Text>
+        </Pressable>
+        <Pressable 
+        style={[styles.button,{borderColor:colors.border}]} 
+          onPress={()=>navigation.navigate('CreateList')}>
+          <MaterialCommunityIcons name="format-list-checks" size={24} color={colors.primary} />
+          <Text style={{color:colors.text,fontSize:17,fontWeight:'500'}}>Create Your Own Packing List</Text>
+        </Pressable>
+        </View>
+      <ManageTripModal
+      modalVisible={modalVisible} 
+      setModalVisible={setModalVisible} 
+      handleRemove={handleRemove}/>
     </View>
   )
 }
@@ -62,39 +78,25 @@ export default function TripSingle({route,navigation}:TripSingleProps) {
 
 
 const styles=StyleSheet.create({
- container:{
-  flex:1,
-  alignItems:'center',
-  paddingVertical:20,
-  gap:20,
- },
- content:{
-  width:'90%',
-  padding:20,
-  gap:20,
-  borderWidth:2,
-  borderRadius:15
- },
- title:{
-  textTransform:'uppercase',
-  fontSize:18,
-  fontWeight:'bold'
- },
- buttonContainer:{
-  width:'90%',
-  flexDirection:'row',
-  justifyContent:'space-between',
-
- },
- 
- button:{
-  flexDirection:'row',
-  justifyContent:'space-between',
-  width:"45%",
-  padding:20,
-  borderWidth:2,
-  borderRadius:15,
-  alignItems:'center'
- }
+  container:{
+    flex:1
+  },
+  content:{
+    gap:20,
+    padding:30,
+    borderBottomWidth:2,
+  },
+  buttonContainer:{
+    gap:20,
+    margin:30,
+  },
+  button:{
+    flexDirection:'row',
+    padding:20,
+    borderWidth:2,
+    borderRadius:20,
+    gap:10,
+    alignItems:'center',
+}
 
 })
